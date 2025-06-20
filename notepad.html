@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notepad</title>
+  <script>
+    const STORAGE_KEY = "editableContent";
+    function saveContent() {
+      const content = document.getElementById("editable").innerHTML;
+      localStorage.setItem(STORAGE_KEY, content);
+    }
+    function loadContent() {
+      const savedContent = localStorage.getItem(STORAGE_KEY);
+      if (savedContent !== null) {
+        document.getElementById("editable").innerHTML = savedContent;
+      } else {
+        document.getElementById("editable").innerHTML = "This is editable content. Start typing here...";
+      }
+    }
+    window.onload = loadContent;
+  </script>
+  <style>
+    #editable {
+      min-height: 100vh;
+      border: none;
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="editable" contenteditable="true" oninput="saveContent()">
+  </div>
+</body>
+
+</html>
